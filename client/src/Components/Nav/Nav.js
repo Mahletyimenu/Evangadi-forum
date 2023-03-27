@@ -8,14 +8,14 @@ const Nav = (props) => {
             
             <div class="navbar_content">
                 
-                <Link href='/' class="navbar-brand" ><img src='https://www.evangadi.com/themes/humans//assets/images/misc/evangadi-logo-home.png' alt="" /></Link>
+                <Link to='/' class="navbar-brand" ><img src='https://www.evangadi.com/themes/humans//assets/images/misc/evangadi-logo-home.png' alt="" /></Link>
             
                 <div>
                     
-                    <Link className='nav_link'>Home</Link>
+                    <Link className='nav_link' to='/'>Home</Link>
                     <Link className='nav_link'>How it works</Link>
                     <Link to={props.link}>
-                    <button className='nav_button'>{props.btn}</button>
+                    <button onClick={props.onClick} className='nav_button'>{props.btn}</button>
                     </Link>
 
                 </div>

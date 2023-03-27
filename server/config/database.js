@@ -29,13 +29,11 @@ let profile = `CREATE TABLE if not exists profile(
     PRIMARY KEY (user_profile_id),
     FOREIGN KEY (user_id) REFERENCES registration(user_id)
 )`;
+
 let question = `CREATE TABLE  IF NOT EXISTS question(
     question_id INT AUTO_INCREMENT,
     question VARCHAR(255) not null,
     question_description varchar(255),
-    question_code_block varchar(255),
-    tags varchar(255),
-    created_at TIMESTAMP DEFAULT NOW(),
     post_id varchar(255) NOT NULL,
     user_id INT NOT NULL,
     PRIMARY KEY(question_id),

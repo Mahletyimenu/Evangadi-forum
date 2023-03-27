@@ -4,6 +4,7 @@ import axios from "axios";
 import { UserContext } from '../../Context/UserContext.js';
 import './SignUp.css';
 import Nav from '../../Components/Nav/Nav';
+import Footer from "../../Components/Footer/Footer.js";
 
 const SignUp = () => {
     const [form, setForm] = useState({});
@@ -42,6 +43,7 @@ const SignUp = () => {
         }
     }
     return (
+        <>
         <div className="signup">
             <Nav btn='SIGN IN' link='/login'/>
             <div className="signup_container">
@@ -116,6 +118,8 @@ const SignUp = () => {
                 </div>
             </div>
         </div>
+        <Footer/>
+        </>
     );
 };
 
