@@ -7,6 +7,7 @@ import Home from './Pages/Home/Home.js';
 import Login from './Pages/Login/Login.js';
 import SignUp from './Pages/SignUp/SignUp.js';
 import AskQuestion from './Pages/AskQuestion/AskQuestion';
+import Answer from './Pages/Answer/Answer.js';
 function App() {
   const [userData, setUserData] = useContext(UserContext);
 
@@ -60,6 +61,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/question" element={<AskQuestion />} />
+          <Route path="/answer" element={<Answer/>} />
           {/* passing logout function as props to Home page */}
           <Route path="/" element={<Home logout={logout} />} />
         </Routes>

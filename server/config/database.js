@@ -44,8 +44,6 @@ let question = `CREATE TABLE  IF NOT EXISTS question(
 let answer = `CREATE TABLE IF NOT EXISTS answer(
     answer_id INT AUTO_INCREMENT,
     answer varchar(255) NOT NULL,
-    answer_code_block varchar(255),
-    answer_created_at TIMESTAMP DEFAULT NOW(),
     question_id INT NOT NULL,
     user_id INT NOT NULL,
     PRIMARY KEY(answer_id),
