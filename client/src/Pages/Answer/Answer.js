@@ -12,10 +12,8 @@ const Answer = ({logout}) => {
     const [post, setPost] = useState({});
     const [form, setForm] = useState({});
     const [answer, setAnswer] = useState([]);
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    console.log(userData.singleQuestion);
     useEffect(() => {
         if (!userData.user) {
         navigate("/login")
@@ -34,7 +32,8 @@ const Answer = ({logout}) => {
 
     useEffect(() => {
         const get = async () => {
-        const res = await axios.post('http://localhost:4000/api/answers/all', {
+        const res = await axios.post
+        ('http://localhost:4000/api/answers/all', {
             question_id: userData.singleQuestion.question_id,
         });
         setAnswer(res.data.data);
@@ -48,56 +47,62 @@ const Answer = ({logout}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:4000/api/answers', {
-        answer: form.answer,
-        user_id: userData.user.id,
-        question_id: post.question_id,
+        try{
+        const response = await axios.post('http://localhost:4000/api/answers', {
+            answer: form.answer,
+            user_id: userData.user.id,
+            question_id: post.question_id,
         });
         if(answer.length == 0) {
-        setAnswer(['']);
-        console.log(answer)
+            setAnswer(['']);
         }
         else {
-        setAnswer([]);
+            console.log("answered");
+            setAnswer([]);
         }
+        navigate('/answer');
         setForm({ answer: "" });
+        }catch (error) {
+            console.log('problem ==>', error.response.data.msg);
+        }
     };
 
     console.log(answer);
-    console.log(post);
 
     return (
         <div>
             <Nav btn='LogOut' link='/login'onClick={logout}/>
             <div className='answer_container'>
                 <h2>Question</h2>
-                <h4>{post?.question}</h4>
-                <p>{post?.question_description}</p>
+                <div className="answer_question">{post[0]?.question} ?</div>
+                <div className="answer_question_desc">{post[0]?.question_description}</div>
                 <hr/>
                 <h1>Answer From The Community</h1>
+
+                {answer && answer?.map((item) => (
+                    <>
+                        <hr/>
+                        
+                        <div className="answer">
+                            <div className='profile'>
+                                <img className='profile_img' src={profile} />
+                                <div >
+                                    {item.user_name}
+                                </div>
+                            </div>
+                            <div className='answer_title'>
+                                {item.answer}
+                            </div>  
+                        </div>
+                    </>  
+                ))}
                 
                 <div className="answer_form_container">
                     <div className="answer_form_title">
                         <h2>Answer The Top Question</h2>
                         <Link to="/">go to question page</Link>
                     </div>
-                    {answer && answer?.map((item) => (
-                        <>
-                            <hr/>
-                            
-                            <div className="answer">
-                                <div className='profile'>
-                                    <img className='profile_img' src={profile} />
-                                    <div >
-                                        {item.user_name}
-                                    </div>
-                                </div>
-                                <div className='answer_title'>
-                                    {item.answer}
-                                </div>  
-                            </div>
-                        </>  
-                    ))}
+                
                     <form onSubmit={handleSubmit}> 
                         <textarea
                             name='answer'
