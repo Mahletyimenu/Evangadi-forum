@@ -20,7 +20,7 @@ const Answer = ({logout}) => {
         }
         const fetch = async () => {
         const response = await axios.post(
-            'http://localhost:4000/api/questions/id',
+            'http://localhost:4000/api/questions/singlequestion',
             {
             post_id: userData.singleQuestion.post_id,
             }
@@ -33,7 +33,7 @@ const Answer = ({logout}) => {
     useEffect(() => {
         const get = async () => {
         const res = await axios.post
-        ('http://localhost:4000/api/answers/all', {
+        ('http://localhost:4000/api/answers/allanswers', {
             question_id: userData.singleQuestion.question_id,
         });
         setAnswer(res.data.data);

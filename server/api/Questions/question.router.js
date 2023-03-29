@@ -5,7 +5,7 @@ const {askquestion,getAllquestions,getQuestion} = require('./question.controller
 
 router.post('/', askquestion);
 router.get('/',getAllquestions);
-router.post('/id',getQuestion);
+router.post('/singlequestion',getQuestion);
 
 
 module.exports = router;
