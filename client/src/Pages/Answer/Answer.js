@@ -53,13 +53,13 @@ const Answer = ({logout}) => {
             user_id: userData.user.id,
             question_id: post.question_id,
         });
-        if(answer.length == 0) {
-            setAnswer(['']);
-        }
-        else {
-            console.log("answered");
-            setAnswer([]);
-        }
+        // if(answer.length == 0) {
+        //     setAnswer(['']);
+        // }
+        // else {
+        //     console.log("answered");
+        //     setAnswer([]);
+        // }
         navigate('/answer');
         setForm({ answer: "" });
         }catch (error) {

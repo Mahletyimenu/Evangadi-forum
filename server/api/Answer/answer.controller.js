@@ -1,18 +1,22 @@
-const { answerTable, getAnswerById } = require("./answer.service");
+const { answerTable, getAnswerById } = require("./answer.service.js");
 
 module.exports = {
     addAnswer: (req, res)=>{
         const {answer} = req.body;
-        if(!answer) return res.status(400).json({
-            msg: 'Answer is not provided!'
-        })
+        if(!answer) {
+            return res.status(400).json({
+                msg: 'Answer is not provided!',
+            });
+        }
         answerTable(req.body, (err, result)=>{
-            if(err) return res.status(500).json({
-                msg: 'database connection error!'
-            })
+            if(err){
+                return res.status(500).json({
+                    msg: 'database connection error!',
+                });
+            } 
             return res.status(200).json({
-            msg: 'Answer successfully added',
-            data: result
+                msg: 'Answer successfully added',
+                data: result,
             })
         })
     },
